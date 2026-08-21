@@ -1,22 +1,41 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bebas_Neue, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "The Litre Cafe - Authentic Korean BBQ in Kathmandu",
-  description: "Experience authentic Korean BBQ at The Litre Cafe. Premium meats, traditional recipes, cozy atmosphere in Shankhamul, Kathmandu.",
-  keywords: ["Korean BBQ", "Korean restaurant", "Kathmandu", "Shankhamul", "Samgyeopsal", "Galbi", "Bibimbap", "Kimchi"],
+  title: "LITRE BBQ | Smoke. Fire. Flavor. Authentic Korean BBQ in Kathmandu",
+  description: "Experience authentic Korean BBQ at LITRE BBQ. Premium meats, fire-grilled, slow-smoked. Bold flavors. Serious BBQ. Shankhamul, Kathmandu.",
+  keywords: ["Korean BBQ", "BBQ restaurant", "Kathmandu", "Shankhamul", "Smoked meat", "Fire grilled", "Authentic BBQ"],
+  authors: [{ name: "LITRE BBQ" }],
+  creator: "LITRE BBQ",
+  publisher: "LITRE BBQ",
+  robots: "index, follow",
+  openGraph: {
+    title: "LITRE BBQ | Smoke. Fire. Flavor.",
+    description: "Authentic Korean BBQ. Premium meats. Fire-grilled perfection.",
+    type: "website",
+    locale: "en_NP",
+    siteName: "LITRE BBQ",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LITRE BBQ | Smoke. Fire. Flavor.",
+    description: "Authentic Korean BBQ. Premium meats. Fire-grilled perfection.",
+  },
 };
 
 export default function RootLayout({
@@ -25,10 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${bebasNeue.variable} ${inter.variable}`}>
+      <body className="antialiased bg-bg-primary text-text-primary">
         {children}
         {/* WARNING FOR AGENT: DO NOT REMOVE THIS SCRIPT */}
         <Script src="https://cdn.jsdelivr.net/gh/IdeavoAI/ideavo-scripts@latest/scripts/ideavo.min.js" />
