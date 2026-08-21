@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Flame } from "lucide-react";
@@ -77,35 +77,39 @@ export function Navbar() {
             </button>
           </div>
         </div>
+      </motion.nav>
 
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden overflow-hidden border-t border-border"
-          style={{ background: "rgba(23, 23, 23, 0.98)" }}
-        >
-          <div className="px-6 py-4 space-y-1">
-            {navLinks.map((link) => (
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-border bg-bg-primary/98 backdrop-blur-sm"
+            style={{ background: "rgba(23, 23, 23, 0.98)" }}
+          >
+            <div className="container mx-auto px-6 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-3 font-body text-sm uppercase tracking-wider text-text-secondary hover:text-accent-bright transition-colors rounded-md hover:bg-bg-secondary"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Link
-                key={link.href}
-                href={link.href}
-                className="block px-4 py-3 font-body text-sm uppercase tracking-wider text-text-secondary hover:text-accent-bright transition-colors rounded-md hover:bg-bg-secondary"
+                href="#order"
+                className="block px-4 py-3 btn-primary text-center text-sm font-body uppercase tracking-wider rounded-md mt-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.label}
+                ORDER NOW
               </Link>
-            ))}
-            <Link
-              href="#order"
-              className="block px-4 py-3 btn-primary text-center text-sm font-body uppercase tracking-wider rounded-md mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              ORDER NOW
-            </Link>
-          </div>
-        </motion.div>
-      </motion.nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
