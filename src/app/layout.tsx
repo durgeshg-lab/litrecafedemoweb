@@ -7,13 +7,14 @@ const bebasNeue = Bebas_Neue({
   variable: "--font-bebas",
   subsets: ["latin"],
   display: "swap",
+  weight: "400",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
