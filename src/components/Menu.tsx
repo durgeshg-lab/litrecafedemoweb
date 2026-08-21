@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { menuItems, MenuItem } from "@/lib/restaurant-data";
 import { cn } from "@/lib/utils";
 
@@ -11,8 +12,10 @@ const categories = [
   { id: "drinks", label: "DRINKS" },
 ] as const;
 
+type CategoryId = (typeof categories)[number]["id"];
+
 export function Menu() {
-  const [activeCategory, setActiveCategory] = useState<typeof categories[0]["id"]>("bbq");
+  const [activeCategory, setActiveCategory] = useState<CategoryId>("bbq");
 
   const filteredItems = menuItems.filter(item => item.category === activeCategory);
 
